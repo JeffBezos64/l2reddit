@@ -1,0 +1,22 @@
+[project]
+name = "l2reddit"
+description = "update to l2reddit dataset package so that you can use a vectorizer as well as tokenize the data. This work expands on SergeyKramps original project."
+version = "0.0.0"
+readme = "README.md"
+dependencies = [
+    "torch",
+    "pandas",
+    "scikit-learn",
+    "numpy",
+    "transformers",
+    "datasets"
+]
+classifiers = [
+    "Private :: Do Not Upload",
+]
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {}
