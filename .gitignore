@@ -1,2 +1,6 @@
 l2reddit.egg-info/
 test-venv/
+__pycache__/
+l2reddit/__pycache__/
+*.pyc
+*.pyo
