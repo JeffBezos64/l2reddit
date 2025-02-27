@@ -197,7 +197,7 @@ class DataBalancer:
 
         # Randomly sample authors for each language
         for language, authors in language_to_authors.items():
-            language_to_authors[language] = random.sample(authors, authors_per_language)
+            language_to_authors[language] = random.sample(list(authors), authors_per_language)
 
         sampled_users = set()
 
