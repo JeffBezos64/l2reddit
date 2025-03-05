@@ -27,7 +27,7 @@ def main():
 
     #since 50% is used for finetune and testing and then the remaining half is used for the experiment.
     train_dataset, test_dataset = data_processor.get_train_test_datasets(split_by_chunks=True, seed=42, sequence_length=2048, train_size=0.5)
-    with open('/csse/research/NativeLanguageID/mthesis-phonological/experiment/pickles/pickled_datasets/seed_42/out_of_domain_experiment_dataframe_clean_chunks.pkl') as f:
+    with open('/csse/research/NativeLanguageID/mthesis-phonological/experiment/pickles/pickled_datasets/seed_42/out_of_domain_experiment_dataframe_clean_chunks.pkl', 'wb') as f:
         pickle.dump(test_dataset, f)
 
 

@@ -11,7 +11,8 @@ dependencies = [
     "transformers",
     "datasets",
     "tiktoken",
-    "protobuf"
+    "protobuf",
+    "sentencepiece"
 ]
 classifiers = [
     "Private :: Do Not Upload",
