@@ -9,7 +9,9 @@ dependencies = [
     "scikit-learn",
     "numpy",
     "transformers",
-    "datasets"
+    "datasets",
+    "tiktoken",
+    "protobuf"
 ]
 classifiers = [
     "Private :: Do Not Upload",
