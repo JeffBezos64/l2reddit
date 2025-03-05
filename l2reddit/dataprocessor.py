@@ -21,7 +21,7 @@ class DataProcessor:
         self.lang2usernames = defaultdict(list)
         self.user2chunks = defaultdict(list)
         self.clean_up_chunk_text = clean_up_chunk_text
-        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_str)
+        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_str,use_fast=False)
         self.number_of_languages = 23
         self.language2label = {
                 'English': 0,
