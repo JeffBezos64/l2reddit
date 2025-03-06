@@ -8,25 +8,26 @@ def main():
     except:
         print("not good enough")
         exit()
-    data_balancer = DataBalancer(random_seed=42)
-    data_balancer.get_statistics('/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/europe_data')
-    data_balancer.get_statistics('/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/non_europe_data')
-    data_balancer.create_balanced_folder(raw_data_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/europe_data',
-                                    output_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/balanced/seed_42/europe_data',
-                                    max_chunks_per_author=3,
-                                    authors_per_language=104,
-                                    )
-    data_balancer.create_balanced_folder(raw_data_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/non_europe_data',
-                                    output_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/balanced/seed_42/non_europe_data',
-                                    max_chunks_per_author=17,
-                                    authors_per_language=273,
-                                    )
+    # data_balancer = DataBalancer(random_seed=42)
+    # data_balancer.get_statistics('/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/europe_data')
+    # data_balancer.get_statistics('/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/non_europe_data')
+    # data_balancer.create_balanced_folder(raw_data_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/europe_data',
+    #                                 output_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/balanced/seed_42/europe_data',
+    #                                 max_chunks_per_author=3,
+    #                                 authors_per_language=104,
+    #                                 )
+    # data_balancer.create_balanced_folder(raw_data_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/text_chunks/original/non_europe_data',
+    #                                 output_dir='/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/balanced/seed_42/non_europe_data',
+    #                                 max_chunks_per_author=17,
+    #                                 authors_per_language=273,
+    #                                 )
 
     data_processor = DataProcessor('google/bigbird-roberta-base')
     data_processor.discover_chunks('/csse/research/NativeLanguageID/mthesis-phonological/experiment/data/balanced/seed_42/non_europe_data')
 
     #since 50% is used for finetune and testing and then the remaining half is used for the experiment.
     train_dataset, test_dataset = data_processor.get_train_test_datasets(split_by_chunks=True, seed=42, sequence_length=2048, train_size=0.5)
+    test_dataset.extract_encodings_and_labels_from_chunks()
     with open('/csse/research/NativeLanguageID/mthesis-phonological/experiment/pickles/pickled_datasets/seed_42/out_of_domain_experiment_dataframe_clean_chunks.pkl', 'wb') as f:
         pickle.dump(test_dataset, f)
 
